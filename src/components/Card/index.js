@@ -8,7 +8,7 @@ function Card({item}) {
   return (
     <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p="3">
         <Link to="/#">
-            <Image src="https://picsum.photos/id/8/400/300" alt="product"/>
+            <Image src={item.image} alt="product" loading="lazy" style={{width:"auto",height:"150px"}}/>
             <Box p="6">
                 <Box d="flex" alignItems="baseline">
                     {moment(item.createdAt).format('DD/MM/YYYY')}
