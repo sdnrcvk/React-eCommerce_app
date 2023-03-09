@@ -4,9 +4,11 @@ import { useFormik } from 'formik'
 import validationSchema from './validations'
 import { fetchRegister } from '../../../api'
 import { useAuth } from '../../../contexts/AuthContext'
+import { useHistory } from 'react-router-dom'
 
 function Signup() {
   const {login}=useAuth();
+  const history=useHistory();
 
   const formik=useFormik({
     initialValues:{
@@ -19,6 +21,7 @@ function Signup() {
       try {
         const registerResponse=await fetchRegister(values);
         login(registerResponse);
+        history.push("/profile");
         console.log(registerResponse);
       } catch (e) {
         bag.setErrors({general:e.response.data.message});

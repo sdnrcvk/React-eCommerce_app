@@ -24,10 +24,10 @@ function Navbar() {
             {!loggedIn && (
             <>
                 <Link to={"/signin"}>
-                    <Button colorScheme='pink'>Login</Button>
+                    <Button colorScheme='pink'>Giriş Yap</Button>
                 </Link>
                 <Link to={"/signup"}>
-                    <Button colorScheme='pink'>Register</Button>
+                    <Button colorScheme='pink'>Kayıt Ol</Button>
                 </Link>
             </>
             )}
