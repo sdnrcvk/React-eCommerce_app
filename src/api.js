@@ -13,3 +13,16 @@ export const fetchProduct=async(product_id)=>{
 
     return data;
 }
+
+export const fetchRegister=async(input)=>{
+    const {data}=await axios.post(base_url+`/users/`,
+        {
+            name:"Sedanur Çevik",
+            email:input.email,
+            password:input.password,
+            avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867",
+        }
+    );
+
+    return data;
+}

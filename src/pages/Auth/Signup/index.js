@@ -1,9 +1,13 @@
 import React from 'react'
-import { Box, Flex, Heading, FormControl, FormLabel, Input, Button } from '@chakra-ui/react'
+import { Box, Flex, Heading, FormControl, FormLabel, Input, Button, Alert } from '@chakra-ui/react'
 import { useFormik } from 'formik'
 import validationSchema from './validations'
+import { fetchRegister } from '../../../api'
+import { useAuth } from '../../../contexts/AuthContext'
 
 function Signup() {
+  const {login}=useAuth();
+
   const formik=useFormik({
     initialValues:{
       email:"",
@@ -12,7 +16,13 @@ function Signup() {
     },
     validationSchema,
     onSubmit:async (values, bag)=>{
-      console.log(values);
+      try {
+        const registerResponse=await fetchRegister(values);
+        login(registerResponse);
+        console.log(registerResponse);
+      } catch (e) {
+        bag.setErrors({general:e.response.data.message});
+      }
     }
   })
 
@@ -32,6 +42,7 @@ function Signup() {
                   onChange={formik.handleChange} 
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
+                  isInvalid={formik.touched.email && formik.errors.email}
                 />
               </FormControl>
               <FormControl>
@@ -42,6 +53,7 @@ function Signup() {
                   onChange={formik.handleChange} 
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
+                  isInvalid={formik.touched.password && formik.errors.password}
                 />
               </FormControl>
               <FormControl>
@@ -52,6 +64,7 @@ function Signup() {
                   onChange={formik.handleChange} 
                   onBlur={formik.handleBlur}
                   value={formik.values.passwordConfirm}
+                  isInvalid={formik.touched.passwordConfirm && formik.errors.passwordConfirm}
                 />
               </FormControl>
               <Button mt="4" width="full" type="submit">Kayıt Ol</Button>
