@@ -58,12 +58,9 @@ export const fetchLogin=async(input)=>{
     return data;
 }
 
-export const fetchLogout=async()=>{
-    const {data}=await axios.post(base_url+`/auth/logout`,
-        {
-            refresh_token: localStorage.getItem("refresh-token"),
-        }    
-    );
+
+export const fetchProfile=async()=>{
+    const {data}=await axios.get(base_url+`/auth/profile`)
 
     return data;
 }

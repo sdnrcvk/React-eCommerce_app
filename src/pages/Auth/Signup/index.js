@@ -20,9 +20,7 @@ function Signup() {
     onSubmit:async (values, bag)=>{
       try {
         const registerResponse=await fetchRegister(values);
-        login(registerResponse);
-        history.push("/profile");
-        console.log(registerResponse);
+        history.push("/signin");
       } catch (e) {
         bag.setErrors({general:e.response.data.message});
       }
@@ -34,7 +32,7 @@ function Signup() {
       <Flex align="center" width="full" justifyContent="center">
         <Box pt={10}>
           <Box textAlign="center">
-            <Heading>Sign Up</Heading>
+            <Heading>Kayıt</Heading>
           </Box>
           <Box my={5} textAlign="left">
             <form onSubmit={formik.handleSubmit}>

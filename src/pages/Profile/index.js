@@ -1,11 +1,11 @@
 import { Button, Text } from '@chakra-ui/react';
 import React from 'react'
 import { useHistory } from 'react-router-dom';
-import { fetchLogout } from '../../api';
 import { useAuth } from '../../contexts/AuthContext'
 
 function Profile() {
     const {user,logout}=useAuth();
+
     const history=useHistory();
     const handleLogout=()=>{
       logout(()=>{

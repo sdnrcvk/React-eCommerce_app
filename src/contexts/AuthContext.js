@@ -1,6 +1,6 @@
 import { Flex, Spinner } from "@chakra-ui/react";
 import { useState, createContext, useEffect, useContext } from "react";
-import { fetchLogin, fetchLogout, fetchMe } from "../api";
+import { fetchLogout, fetchProfile } from "../api";
 
 const AuthContext=createContext();
 
@@ -12,16 +12,18 @@ const AuthProvider=({children})=>{
     useEffect(()=>{
         (async()=>{
             try {
-                const me=await fetchLogin();
+                if(loggedIn){
+                const me=await fetchProfile();
 
                 setLoggedIn(true);
                 setUser(me);
                 setLoading(false);
 
                 console.log("me", me);
+                }
 
             } catch (e) {
-                
+                console.log("Hata oluştu!",e)
             }
         })()
     },[]);
@@ -31,13 +33,13 @@ const AuthProvider=({children})=>{
         setUser(data);
 
         localStorage.setItem("access-token",data.access_token);
-        localStorage.setItem("access-token",data.refresh_token)
+        localStorage.setItem("refresh-token",data.refresh_token)
     };
 
     const logout=async(callback)=>{
         setLoggedIn(false);
         setUser(null);
-        await fetchLogout();
+
         localStorage.removeItem('access-token')
         localStorage.removeItem('refresh-token')
 
