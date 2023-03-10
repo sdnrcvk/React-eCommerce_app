@@ -22,6 +22,13 @@ function Navbar() {
             </ul>
         </div>
         <div className={styles.right}>
+        {items.length > 0 && (
+            <Link to={"/basket"}>
+                <Button colorScheme='pink' variant="outline">
+                    Basket ({items.length})
+                </Button>
+            </Link>      
+            )}
             {!user && (
             <>
                 <Link to={"/signin"}>
@@ -34,13 +41,6 @@ function Navbar() {
             )}
             {user && (
                 <>
-                {items.length > 0 && (
-                <Link to={"/basket"}>
-                    <Button colorScheme='orange' variant="outline">
-                        Basket ({items.length})
-                    </Button>
-                </Link>      
-                ) }
                     <Link to={"/profile"}>
                         <Button colorScheme='orange'>Profil</Button>
                     </Link>                
