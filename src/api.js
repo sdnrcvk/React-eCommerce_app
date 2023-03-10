@@ -64,3 +64,4 @@ export const fetchProfile=async()=>{
 
     return data;
 }
+
