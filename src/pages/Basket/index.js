@@ -42,9 +42,21 @@ function Basket() {
         {
             items.length > 0 && (
             <>
+                <Box mb="5">
+                    <Box>
+                        <Text fontSize="22">
+                        Toplam Tutar : {total} TL
+                        </Text>
+                    </Box>
+                    <Button mt="2" size="sm" colorScheme="green" onClick={onOpen}>
+                        Sipariş Ver
+                    </Button>
+                </Box>
+                <hr></hr>
                 <ul style={{listStyleType:"decimal"}}>
                 {items.map((item)=>{
-                    <li key={item.id} style={{marginBottom:"15px"}}>
+                    return (
+                    <li key={item.id} style={{margin:"15px", display:"flex", float:"left"}}>
                         <Link to={`/product/${item.id}`}>
                             <Text fontSize="18" >{item.title}/{item.price} TL</Text>
                             <Image htmlWidth={200} 
@@ -57,16 +69,9 @@ function Basket() {
                             </Button>
                         </Link>
                     </li>
+                    )
                 })}
                 </ul>
-                <Box mt="10">
-                    <Text fontSize="22">
-                    Toplam Tutar : {total} TL
-                    </Text>
-                </Box>
-                <Button mt="2" size="sm" colorScheme="green" onClick={onOpen}>
-                    Sipariş Ver
-                </Button>
                 <Modal
                     initialFocusRef={initialRef}
                     isOpen={isOpen}

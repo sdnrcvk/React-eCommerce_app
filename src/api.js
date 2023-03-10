@@ -59,8 +59,12 @@ export const fetchLogin=async(input)=>{
 }
 
 
-export const fetchProfile=async()=>{
-    const {data}=await axios.get(base_url+`/auth/profile`)
+export const fetchProfile=async(token)=>{
+    const {data}=await axios.get(base_url+`/auth/profile`, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
 
     return data;
 }

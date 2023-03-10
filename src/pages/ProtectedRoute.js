@@ -3,11 +3,11 @@ import { Route, Redirect } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext';
 
 function ProtectedRoute({component:Component,...rest}) {
-    const {loggedIn}=useAuth();
+    const {user}=useAuth();
 
     return <Route {...rest} 
         render={(props)=>{
-            if(loggedIn){
+            if(user){
                 return <Component {...props}/>
             }
         return <Redirect to={{pathname:"/"}}/>
