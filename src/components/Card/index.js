@@ -25,7 +25,7 @@ function Card({item}) {
         </Link>
         <Button colorScheme={findBasketItem ? "orange" : "green"} variant="solid" onClick={()=>addToBasket(item,findBasketItem)}>
         {
-            findBasketItem ? "Sepetten sil" : "Sepete Ekle"  
+            findBasketItem ? "Sepetten Sil" : "Sepete Ekle"  
         }
         </Button>
     </Box>
