@@ -42,7 +42,7 @@ function Navbar() {
             {user && (
                 <>
                     <Link to={"/profile"}>
-                        <Button colorScheme='orange'>Profil</Button>
+                        <Button colorScheme='pink'>Profil</Button>
                     </Link>                
                 </>
                 )
